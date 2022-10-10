@@ -12,6 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
+      Usuarios.hasMany(models.Log,{
+        foreignKey:{
+          name:'usuario_id',
+          allowNull:'fale'
+        }
+      })
+
       Usuarios.belongsTo(models.Status_Usuarios,{
         foreignKey:{
           name:'status_usuario_id',

@@ -15,6 +15,10 @@ module.exports = {
       atividade: {
         type: Sequelize.STRING
       },
+      usuario_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Usuarios', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
