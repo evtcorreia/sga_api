@@ -12,6 +12,10 @@ module.exports = {
       serie: {
         type: Sequelize.STRING
       },
+      status_series_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Series', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

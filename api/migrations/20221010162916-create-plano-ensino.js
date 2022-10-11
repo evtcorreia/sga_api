@@ -12,6 +12,14 @@ module.exports = {
       descricao: {
         type: Sequelize.STRING
       },
+      professores_disciplinas_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Pivot_Disciplinas_Professores', key:'professores_id'}
+      },
+      status_plano_ensino_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Plano_Ensinos', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

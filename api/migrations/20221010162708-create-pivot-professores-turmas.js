@@ -10,10 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       turma_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{model:'Turmas', key:'id'}
       },
       professores_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{model:'Professores', key:'id'}
       },
       createdAt: {
         allowNull: false,

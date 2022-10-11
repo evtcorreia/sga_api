@@ -11,6 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Alunos.hasOne(models.Matricula,{
+        foreignKey:{
+          name:'aluno_id',
+          allowNull:'false'
+        }
+      })
+
+      Alunos.belongsTo(models.Status_Alunos,{
+        foreignKey:{
+          name:'status_aluno',
+          allowNull:'false'
+        }
+      })
+
+      Alunos.belongsTo(models.Pessoas,{
+        foreignKey:{
+          name:'pessoa_id',
+          allowNull:falsse
+        }
+      })
     }
   }
   Alunos.init({

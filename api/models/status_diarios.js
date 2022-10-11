@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Status_Diarios.belongsTo(models.Diarios,{
+        foreignKey:{
+          name:'status_diario_id',
+          allowNull:'false'
+        }
+      })
     }
   }
   Status_Diarios.init({

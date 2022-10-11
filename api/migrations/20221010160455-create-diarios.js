@@ -16,6 +16,22 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      status_diario_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Diarios',key:'id'}
+      },
+      disciplina_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Disciplinas', key:'id'}
+      },
+      serie_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Series', key:'id'}
+      },
+      ano_letivo_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Ano_Letivos', key:'id'}
+      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE

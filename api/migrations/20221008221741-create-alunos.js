@@ -12,6 +12,14 @@ module.exports = {
       dt_matricula: {
         type: Sequelize.DATE
       },
+      status_aluno:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Alunos', key:'id'}
+      },
+      pessoa_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Pessoas',key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Status_Turmas.hasOne(models.Turmas,{
+        foreignKey:{
+          name:'status_turma_id',
+          allowNull:'false'
+        }
+      })
     }
   }
   Status_Turmas.init({

@@ -11,6 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Ano_Letivo.hasMany(models.Diarios,{
+        foreignKey:'ano_letivo_id',
+        allowNull:'false'
+      })
+
+      Ano_Letivo.belongsTo(modules.Status_Ano_Letivo,{
+        foreignKey:{
+          name:'status_ano_letivo_id',
+          allowNull:'false'
+        }
+      })
+
+      Ano_Letivo.hasMany(models.Matriculas,{
+        foreignKey:{
+          name:'ano_letivo_id',
+          allowNull:'false'
+        }
+      })
     }
   }
   Ano_Letivo.init({

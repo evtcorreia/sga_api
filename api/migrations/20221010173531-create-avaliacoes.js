@@ -15,6 +15,18 @@ module.exports = {
       nota: {
         type: Sequelize.FLOAT
       },
+      plano_ensino_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Plano_Ensinos', key:'id'}
+      },
+      serie_id:{
+        type:Sequelize.INTEGER,
+        refrences:{model:'Series', key:'id'}
+      },
+      status_avaliacoes_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Avaliacoes', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

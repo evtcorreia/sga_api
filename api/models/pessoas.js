@@ -12,6 +12,20 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
+      Pessoas.hasOne(models.Alunos,{
+        foreignKey:{
+          name:'pessoa_id',
+          allowNull:false
+        }
+      })
+
+      Pessoas.hasOne(models.Pofessores, {
+        foreignKey:{
+          name:'pessoa_id',
+          allowNull:false
+        }
+      })
+
       Pessoas.belongsToMany(models.Escolas,{
         through:'Pivot_Escolas_Pessoas',
         foreignKey:'pessoa_id'

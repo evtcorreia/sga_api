@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Pivot_Disciplinas_Professores.hasMany(models.Plano_Ensino,{
+        foreignKey:{
+          name:'professores_disciplinas_id',
+          allowNull:'false'
+        }
+        
+      })
     }
   }
   Pivot_Disciplinas_Professores.init({

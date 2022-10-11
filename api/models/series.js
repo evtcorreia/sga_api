@@ -11,6 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Series.hasMany(models.Avaliacoes,{
+        foreignKey:{
+          name:'serie_id',
+          allowNull:'false'
+        }
+        
+      })
+
+      Series.belongsToMany(models.Disciplinas,{
+        through:'Pivot_Disciplinas_Series',
+        foreignKey:'series_id'
+      })
+
+      Series.belongsTo(models.Status_Series,{
+        foreignKey:{
+          name:'status_series_id',
+          allowNull:'false'
+        }
+      })
+      Series.hasMany(models.Turmas,{
+        foreignKey:{
+          name:'serie_id',
+          allowNull:false
+        }
+      })
+      Series.hasMany(models.Diarios,{
+        foreignKey:{
+          name:'serie_id',
+          allowNull:'false'
+        }
+      })
     }
   }
   Series.init({

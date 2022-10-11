@@ -12,6 +12,10 @@ module.exports = {
       disciplina: {
         type: Sequelize.STRING
       },
+      status_disciplina_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Disciplinas', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

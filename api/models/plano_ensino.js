@@ -11,8 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Plano_Ensino.hasMany(model.Avaliacoes,{
+        foreignKey:'plano_ensino_id',
+        allowNull:'false'
+      })
+
+      Plano_Ensino.belongsTo(models.Status_Plano_Ensino,{
+        foreignKey:{
+          name:'status_plano_ensino_id',
+          allowNull:'false'
+        }
+      })
+      Plano_Ensino.belongsTo(models.Pivot_Disciplinas_Professores,{
+        foreignKey:{
+          name:'professores_disciplinas_id',
+          allowNull:'false'
     }
-  }
+  })
+}}
   Plano_Ensino.init({
     descricao: DataTypes.STRING
   }, {

@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Status_Plano_Ensino.belongsTo(models.Plano_Ensino,{
+        foreignKey:{
+          name:'status_plano_ensino_id',
+          allowNull:'false'
+        }
+      })
     }
   }
   Status_Plano_Ensino.init({

@@ -15,6 +15,22 @@ module.exports = {
       dt_matricula: {
         type: Sequelize.DATE
       },
+      aluno_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Alunos',key:'id'}
+      },
+      turma_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Turmas', key:'id'}
+      },
+      ano_letivo_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Ano_Letivos',key:'id'}
+      },
+      status_matricula_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Matriculas', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

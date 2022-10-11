@@ -11,6 +11,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Matriculas.belongsTo(models.Status_Matriculas,{
+
+        foreignKey:{
+          name:'status_matricula_id',
+          allowNull:'false'
+        }
+      })
+
+      Matriculas.belongsTo(models.Ano_Letivo,{
+        foreignKey:{
+          name:'ano_letivo_id',
+          allowNull:'false'
+        }
+      })
+
+      Matriculas.belongsTo(models.Turmas,{
+        foreignKey:{
+          name:'turma_id',
+          allowNull:false
+        }
+      })
+
+      Matriculas.belongsTo(models.Alunos,{
+        foreignKey:{
+          name:'alunos_id',
+          allowNull:'false'
+        }
+      })
     }
   }
   Matriculas.init({

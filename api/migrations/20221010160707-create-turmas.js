@@ -12,6 +12,22 @@ module.exports = {
       identificador: {
         type: Sequelize.STRING
       },
+      status_turma_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Turmas', key:'id'}
+      },
+      serie_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Series', key:'id'}
+      },
+      sala_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Salas', key:'id'}
+      },
+      status_sala_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Status_Salas', key:'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
