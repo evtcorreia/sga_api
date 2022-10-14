@@ -19,6 +19,10 @@ module.exports = {
         type:Sequelize.INTEGER,
         references:{model:'Escolas',key:'id'}
       },
+      capacidade:{
+        type:Sequelize.INTEGER,
+        allowNull:false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

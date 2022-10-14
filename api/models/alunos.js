@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-      Alunos.hasOne(models.Matricula,{
+      Alunos.hasOne(models.Matriculas,{
         foreignKey:{
           name:'aluno_id',
           allowNull:'false'
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       Alunos.belongsTo(models.Pessoas,{
         foreignKey:{
           name:'pessoa_id',
-          allowNull:falsse
+          allowNull:'false'
         }
       })
     }

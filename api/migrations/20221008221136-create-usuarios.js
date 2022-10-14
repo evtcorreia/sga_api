@@ -15,6 +15,10 @@ module.exports = {
       senha: {
         type: Sequelize.STRING
       },
+      cargo_id:{
+        type:Sequelize.INTEGER,
+        references:{model:'Cargos', key:'id'}
+      },
 
       pessoa_id:{
         type:Sequelize.INTEGER,

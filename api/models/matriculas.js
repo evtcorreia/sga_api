@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       Matriculas.belongsTo(models.Turmas,{
         foreignKey:{
           name:'turma_id',
-          allowNull:false
+          allowNull:'false'
         }
       })
 

@@ -15,14 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       Pessoas.hasOne(models.Alunos,{
         foreignKey:{
           name:'pessoa_id',
-          allowNull:false
+          allowNull:'false'
         }
       })
 
-      Pessoas.hasOne(models.Pofessores, {
+      Pessoas.hasOne(models.Professores, {
         foreignKey:{
           name:'pessoa_id',
-          allowNull:false
+          allowNull:'false'
         }
       })
 
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Pessoas.hasOne(models.Usuarios,{
-        foreign:{
+        foreignKey:{
           name:'pessoa_id',
           allowNull:'false'
         }
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Pessoas.belongsTo(models.Status_Pessoas,{
         foreignKey:{
-          nname:'status_pessoa_id',
+          name:'status_pessoa_id',
           allowNull:'false'
         }
       })

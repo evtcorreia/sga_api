@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull:'false'
       })
 
-      Ano_Letivo.belongsTo(modules.Status_Ano_Letivo,{
+      Ano_Letivo.belongsTo(models.Status_Ano_Letivo,{
         foreignKey:{
           name:'status_ano_letivo_id',
           allowNull:'false'

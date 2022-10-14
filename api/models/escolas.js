@@ -17,13 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:'escola_id'
       })
 
-      Escolas.hasMany(Models.Salas,{
+      Escolas.hasMany(models.Salas,{
         foreignKey:{
           name:'escola_id',
           allowNull:false
         }
       })
-      Escolas.belongsTo(Models.Enderecos,{
+      Escolas.belongsTo(models.Enderecos,{
         foreignKey:{
           name:'endereco_id',
           allowNull:'false'

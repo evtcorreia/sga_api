@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-      Plano_Ensino.hasMany(model.Avaliacoes,{
+      Plano_Ensino.hasMany(models.Avaliacoes,{
         foreignKey:'plano_ensino_id',
         allowNull:'false'
       })

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       })
 
-      Turmas.belongsTo(models.series,{
+      Turmas.belongsTo(models.Series,{
         foreignKey:{
           name:'serie_id',
           allowNull:'false'
