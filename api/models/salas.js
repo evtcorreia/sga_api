@@ -35,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Salas.init({
     numero: DataTypes.STRING,
-    descricao: DataTypes.STRING
+    descricao: DataTypes.STRING,
+    capacidade:DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Salas',
