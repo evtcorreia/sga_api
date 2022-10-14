@@ -1,11 +1,23 @@
 const { Sequelize } = require('./../models')
 const database = require('./../models')
+const decodeJwt = require('../services/decodeJwt');
 
 class SalasController{
 
     static async Lista(req, res){
 
-        const lista =  await database.Salas.findAll()
+        const info = await decodeJwt(req)
+
+        console.log(info.escola);
+
+        const lista =  await database.Salas.findAll({
+            include:{
+                model:database.Escolas,
+                where:{
+                    id:info.escola
+                }
+            }
+        })
 
         res.status(201).json(lista)
     }
@@ -13,12 +25,16 @@ class SalasController{
 
     static async Criar(req, res){
 
+        const info = await decodeJwt(req)
+
+        console.log(info.escola);
+
         const dados = req.body;
 
         const novaSala = {
             numero:dados.numero,
             descricao:dados.descricao,
-            escola_id:1,
+            escola_id:info.escola,
             capacidade:dados.capacidade,
             status_sala_id:1,
             createdAt: Date(),

@@ -1,16 +1,28 @@
 const database = require('./../models')
+const decodeJwt = require('../services/decodeJwt');
 
 
 class AlunoController{
 
     
     static async Lista(req, res){
+
+        const info = await decodeJwt(req)
+
+        console.log(info.escola);
         try {
 
             const lista = await database.Alunos.findAll({
                 
                 include:[{
-                    model:database.Pessoas
+                    model:database.Pessoas,
+                    include:[{
+                        model:database.Escolas,
+                        where:{
+                            id:info.escola
+                        }
+                    }]
+
                 }]
             })
             return res.status(200).json(lista)
@@ -23,6 +35,10 @@ class AlunoController{
     }
 
     static async Matricular(req, res){
+
+        const info = await decodeJwt(req)
+
+        console.log(info.escola);
 
         const dados =  req.body;
 
@@ -47,8 +63,8 @@ class AlunoController{
 
         }
        const  pivot_escola_pessoas = {
-        escolas_id: 1,
-        pessoas_id: 1
+        escola_id: info.escola,
+       
        }
         const aluno = {
             dt_matricula: Date(),
@@ -64,6 +80,7 @@ class AlunoController{
             const pessoaRes = await database.Pessoas.create({...pessoa, endereco_id},{transaction: t}); 
             const pessoa_id = await pessoaRes.id;
             const alunoRes = await database.Alunos.create({...aluno, pessoa_id},{transaction: t})
+            await database.Pivot_Escolas_Pessoas.create({...pivot_escola_pessoas, pessoa_id},{transaction:t})
 
 
             res.status(201).json(pessoa)

@@ -9,6 +9,9 @@ const { Op } = require("sequelize");
 const moment = require('moment')
 
 
+const SECRET = process.env.CHAVE_JWT;
+
+
 
 
 
@@ -17,9 +20,9 @@ class UsuariosController{
 
     static async cadastrar(req, res){
 
-        //const info = await decodeJwt(req)
+        const info = await decodeJwt(req)
 
-        //console.log(info.empresa);
+        console.log(info.escola);
 
         const dados = req.body
 
@@ -51,15 +54,15 @@ class UsuariosController{
 
         }
        const  pivot_escola_pessoas = {
-        escolas_id: 1,
-        pessoas_id: 1
+        escola_id: info.escola,
+       
        }
 
         const usuario= {
 
             login:dados.login,
             senha: senhaHash,
-            cargo_id: 1,
+            cargo_id: dados.cargo_id,
             status_usuario_id: 1,
             createdAt: Date(),
             updatedAt: Date()
@@ -76,7 +79,8 @@ class UsuariosController{
                 const endereco_id = await enderecoRes.id;
                 const pessoaRes = await database.Pessoas.create({...pessoa, endereco_id},{transaction: t}); 
                 const pessoa_id = await pessoaRes.id;
-                const alunoRes = await database.Usuarios.create({...usuario, pessoa_id},{transaction: t})
+                const alunoRes = await database.Usuarios.create({...usuario, pessoa_id},{transaction: t});
+                await database.Pivot_Escolas_Pessoas.create({...pivot_escola_pessoas, pessoa_id},{transaction:t})
     
     
                 res.status(201).json(pessoa)
@@ -122,22 +126,25 @@ class UsuariosController{
 
         const dados = req.body;
 
-        const codigo = dados.user;
+        const login = dados.login;
         const senha = dados.senha
 
-        const user =  await UsuariosController.verificaCodigo(user)
         
-        const valida = false
+        const user =  await UsuariosController.verificaUsuario(login)
+        console.log(user);
+        
+       const valida = false
 
         if(user !== null){
 
-            const valida = await UsuariosController.verificaSenha(user, senha)
+            const valida = await UsuariosController.verificaSenha(login, senha)
 
             if(user !== null & valida == true){
 
-                const usuario = await UsuariosController.buscaEscola(user)
+                const usuario = await UsuariosController.buscaEscola(login)
+                console.log(usuario);
                 //console.log(`A empresa é a empresa de id ${usuario.Pessoa.Empresas[0].id}`);
-                const token = jwt.sign({id: codigo, empresa: usuario.Pessoa.Empresas[0].id, codigo},SECRET, {expiresIn: 10000})
+                const token = jwt.sign({id: usuario.id, escola: usuario.Pessoa.Escolas[0].id, login,autorizacao:usuario.cargo_id},SECRET, {expiresIn: 10000})
                 return res.json({auth: true, token})
                 
             }
@@ -148,20 +155,20 @@ class UsuariosController{
 
       
         
-        res.status(400).end()
+        res.status(400).end() 
     }
 
-    static async verificaCodigo(codigo){
+    static async verificaUsuario(login){
 
-        const user = await database.Usuario.findOne({where: {id: codigo}})
+        const user = await database.Usuarios.findOne({where: {login: login}})
 
         return user
         
     }
 
-    static async verificaSenha(codigo, senha){
+    static async verificaSenha(login, senha){
 
-        const user = await database.Usuario.findOne({where: {id: codigo}})
+        const user = await database.Usuarios.findOne({where: {login: login}})
 
         
         
@@ -173,9 +180,9 @@ class UsuariosController{
         
     }
 
-    static async buscaEscola(user){
-        const usuario = await database.Usuario.findOne({
-            where: {login:user},
+    static async buscaEscola(login){
+        const usuario = await database.Usuarios.findOne({
+            where: {login:login},
             include:[{
                 model: database.Pessoas,
                 include: [{
