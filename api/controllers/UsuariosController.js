@@ -22,7 +22,7 @@ class UsuariosController{
 
         const info = await decodeJwt(req)
 
-        console.log(info.escola);
+        
 
         const dados = req.body
 
@@ -54,7 +54,7 @@ class UsuariosController{
 
         }
        const  pivot_escola_pessoas = {
-        escola_id: info.escola,
+        escola_id:1 // info.escola,
        
        }
 
@@ -131,7 +131,7 @@ class UsuariosController{
 
         
         const user =  await UsuariosController.verificaUsuario(login)
-        console.log(user);
+        
         
        const valida = false
 
@@ -142,8 +142,8 @@ class UsuariosController{
             if(user !== null & valida == true){
 
                 const usuario = await UsuariosController.buscaEscola(login)
-                console.log(usuario);
-                //console.log(`A empresa é a empresa de id ${usuario.Pessoa.Empresas[0].id}`);
+
+                
                 const token = jwt.sign({id: usuario.id, escola: usuario.Pessoa.Escolas[0].id, login,autorizacao:usuario.cargo_id},SECRET, {expiresIn: 10000})
                 return res.json({auth: true, token})
                 

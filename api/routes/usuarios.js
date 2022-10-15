@@ -8,7 +8,7 @@ const router = Router()
 router
 
 .post('/v1/login', UsuariosController.realizaLogin)
-.post('/v1/usuario/novo',  verifyJwt, UsuariosController.cadastrar)
+.post('/v1/usuario/novo',  /* verifyJwt, */ UsuariosController.cadastrar)
 
 
 

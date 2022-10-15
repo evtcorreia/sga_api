@@ -9,7 +9,7 @@ class AlunoController{
 
         const info = await decodeJwt(req)
 
-        console.log(info.escola);
+        
         try {
 
             const lista = await database.Alunos.findAll({
@@ -38,7 +38,7 @@ class AlunoController{
 
         const info = await decodeJwt(req)
 
-        console.log(info.escola);
+        
 
         const dados =  req.body;
 
@@ -259,6 +259,50 @@ class AlunoController{
             
         }
         
+    }
+
+    static async AlunoPorSala(req, res){
+
+        const {id} = req.params
+
+        const info = await decodeJwt(req)
+
+        
+        try {
+
+            const lista = await database.Pessoas.findAll({
+                
+                include:[{
+                    model:database.Alunos,
+                    include:[{
+                        model:database.Matriculas,
+                        include:[{
+                            right:true,
+                            model:database.Turmas,
+                            include:[{
+                                
+                                model:database.Salas,
+                                where:{
+                                    id:id
+                                }
+                            }]
+                            
+                        }]
+    
+                    }]
+
+                }]
+                
+            })
+            return res.status(200).json(lista)
+            
+        } catch (e) {
+
+            return res.status(500).json(e.message)
+            
+        }
+
+
     }
     
 

@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Matriculas.belongsTo(models.Alunos,{
         foreignKey:{
-          name:'alunos_id',
+          name:'aluno_id',
           allowNull:'false'
         }
       })

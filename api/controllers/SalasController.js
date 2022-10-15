@@ -8,7 +8,7 @@ class SalasController{
 
         const info = await decodeJwt(req)
 
-        console.log(info.escola);
+        
 
         const lista =  await database.Salas.findAll({
             include:{
@@ -27,7 +27,7 @@ class SalasController{
 
         const info = await decodeJwt(req)
 
-        console.log(info.escola);
+        
 
         const dados = req.body;
 
