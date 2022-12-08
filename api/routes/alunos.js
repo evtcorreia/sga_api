@@ -13,6 +13,7 @@ router
 .put('/v1/aluno/alterar/:id',verifyJwt, AlunoController.Alterar)
 .put('/v1/aluno/delete/:id',verifyJwt, AlunoController.Delete)
 .get('/v1/aluno/sala/:id',/* verifyJwt, */ AlunoController.AlunoPorSala)
+.get('/v1/alunos/full',  verifyJwt,AlunoController.AlunosComDisciplinas)
 
 
 module.exports = router
