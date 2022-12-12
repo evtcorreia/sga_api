@@ -101,6 +101,8 @@ class AlunoController {
 
         const { id } = req.params;
 
+        console.log(id);
+
 
         const dados = req.body;
 
@@ -113,9 +115,34 @@ class AlunoController {
 
                     id: id
                 },
-                include: {
-                    model: database.Pessoas
+
+                include:[{
+
+                    model:database.Pessoas,
+                    include:[{
+                        model: database.Escolas
+                    },
+                    {
+                        model:database.Enderecos
+                    }
+                ]
+
+                },
+                {
+                    model:database.Matriculas,
+                    include:[{
+                        model:database.Turmas,
+                        include:[{
+                            model:database.Series
+                        }]
+                    }]
                 }
+            
+            
+            
+            
+            ]
+               
 
 
             })
@@ -327,6 +354,7 @@ class AlunoController {
                 },
                 {
                     model:database.Matriculas,
+                    //required: true,
                     include:[{
                         model:database.Turmas,
                         include:[{
