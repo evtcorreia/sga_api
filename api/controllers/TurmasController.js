@@ -36,6 +36,42 @@ class TurmasController{
 
 
     }
+
+
+    static async Listar(req, res){
+        
+
+        const info  = await decodeJwt(req)
+
+        console.log(info);
+
+
+        try {
+
+            const lista = await database.Turmas.findAll({
+
+                include:[{
+                    model:database.Salas,
+                    where:{escola_id:info.escola}
+                 
+                },
+                {
+                    model:database.Series
+                }
+            
+            ]
+
+
+               
+
+            })
+
+            return  res.status(200).json(lista)
+            
+        } catch (e) {
+            return res.status(500).json(e.message)
+        }
+    }
 }
 
 module.exports = { TurmasController }

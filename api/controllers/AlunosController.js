@@ -393,8 +393,36 @@ class AlunoController {
         return res.status(500).json(e.message)
 
     }
-}
-    
+    }
+    static async alocarAluno(req, res){
+
+        const dados  = req.body
+        const {id} = req.params
+
+        const matricula = {
+            ano: dados.ano,
+            dt_matricula: Date(),
+            aluno_id: id,
+            turma_id: dados.turma_id,
+            status_matricula_id: dados.status_matricula_id,
+            ano_letivo_id: dados.ano_letivo_id
+        }
+
+        try {
+
+            database.sequelize.transaction(async (t) =>{
+
+                const matriculaRes = await database.Matriculas.create(matricula, {transaction: t})
+
+                res.status(201).json(matricula)
+            })
+            
+        } catch (e) {
+            return res.status(500).json(e.message)
+        }
+
+
+    }
 
 }
 module.exports = { AlunoController }

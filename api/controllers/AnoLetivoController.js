@@ -32,6 +32,25 @@ class AnoLetivoController{
             
         }
     } 
+
+
+    static async Listar(req, res){
+
+        const info = await decodeJwt(req)
+
+
+        try {
+            const lista = await database.Ano_Letivo.findAll({
+                where:{status_ano_letivo_id:1}
+            })
+
+            return res.status(200).json(lista)
+        } catch (e) {
+
+            return res.status(500).json(e.message)
+            
+        }
+    }
 }
 
 module.exports = { AnoLetivoController }

@@ -14,6 +14,7 @@ router
 .put('/v1/aluno/delete/:id',verifyJwt, AlunoController.Delete)
 .get('/v1/aluno/sala/:id',/* verifyJwt, */ AlunoController.AlunoPorSala)
 .get('/v1/alunos/full',  verifyJwt,AlunoController.AlunosComDisciplinas)
+.post('/v1/aluno/alocar/:id', verifyJwt, AlunoController.alocarAluno)
 
 
 module.exports = router
