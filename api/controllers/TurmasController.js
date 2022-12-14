@@ -72,6 +72,52 @@ class TurmasController{
             return res.status(500).json(e.message)
         }
     }
+
+
+    static async turmasComProfessores(req, res){
+
+        const info  = await decodeJwt(req)
+        const { id } = req.params
+
+        try {
+
+             const lista = await database.Turmas.findAll({
+                include: [{
+                  model: database.Professores,                  
+                  required:true,
+                  include:[{
+                    model:database.Pessoas,
+                    required:true,
+                    include:[{
+                        model:database.Usuarios,
+                        where:{id:info.id},
+                    }]
+                }],
+                   through: {
+                    attributes: [],
+                   
+                   
+                  } 
+                
+                },
+                {
+                    model:database.Series
+                }
+            ]
+              }); 
+
+              
+              
+              
+          
+    
+            res.status(200).json(lista)
+        } catch (e) {
+
+            res.status(500).json(e.message)
+            
+        }
+    }
 }
 
 module.exports = { TurmasController }

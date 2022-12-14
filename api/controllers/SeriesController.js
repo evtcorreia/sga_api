@@ -31,6 +31,19 @@ class SeriesController{
 
 
     }
+
+
+    static async Listar(req, res){
+
+        try {
+            const lista = await database.Series.findAll()
+            
+            return res.status(200).json(lista)
+        } catch (e) {
+            
+            return res.status(500).json(e.message)
+        }
+    }
 }
 
 module.exports = { SeriesController }

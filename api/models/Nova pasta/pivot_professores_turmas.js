@@ -11,21 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-        Pivot_Professores_Turmas.belongsTo(models.Professores,{
-          foreignKey:{
-            name:'professores_id',
-            allowNull:'false'
-          }
-        })
-        Pivot_Professores_Turmas.belongsTo(models.Turmas,{
-          foreignKey:{
-            name:'turmas_id',
-            allowNull:'false'
-          }
-        })
-
-    
     }
   }
   Pivot_Professores_Turmas.init({

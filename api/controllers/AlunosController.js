@@ -424,5 +424,38 @@ class AlunoController {
 
     }
 
+
+    static async  alunosPorTurma(req, res){
+
+        const {id}  = req.params
+
+
+        try {
+
+            const lista  = await database.Alunos.findAll({
+                include:[{
+                    model:database.Matriculas,
+                    required:true,
+                    include:[
+                        {
+                            model:database.Turmas,
+                            where:{id:id}
+                        }]
+                },
+                {
+                    model: database.Pessoas
+                }
+            ]
+            })
+
+            return res.status(200).json(lista)
+            
+        } catch (e) {
+
+            return res.status(500).json(e.message)
+            
+        }
+    }
+
 }
 module.exports = { AlunoController }
