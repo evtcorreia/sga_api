@@ -424,7 +424,6 @@ class AlunoController {
 
     }
 
-
     static async  alunosPorTurma(req, res){
 
         const {id}  = req.params

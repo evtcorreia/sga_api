@@ -13,19 +13,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       cpf: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       dt_nascimento: {
+        allowNull: false,
         type: Sequelize.DATEONLY
       },
       endereco_id:{
+        allowNull: false,
         type:Sequelize.INTEGER,
         references:{model:'Enderecos', key:'id'}
       },
       status_pessoa_id:{
+        allowNull: false,
         type:Sequelize.INTEGER,
         references:{model:'Status_Pessoas',key:'id'}
       },
