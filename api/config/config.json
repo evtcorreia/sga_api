@@ -1,5 +1,13 @@
 {
   "development": {
+    "username": "connectasoftcom_sgaroot",
+    "password": "Xd}UDHk[.w;3",
+    "database": "connectasoftcom_sga",
+    "host": "162.240.8.108",
+    "port":3306,
+    "dialect": "mysql"
+  },
+  "test": {
     "username": "root",
     "password": "root",
     "database": "sga_database",
@@ -7,18 +15,12 @@
     "port":3306,
     "dialect": "mysql"
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "connectasoftcom_sgaroot",
+    "password": "Xd}UDHk[.w;3",
+    "database": "connectasoftcom_sga",
+    "host": "162.240.8.108",
+    "port":3306,
     "dialect": "mysql"
   }
 }
