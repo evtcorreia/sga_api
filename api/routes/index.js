@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
  const anoLetivo = require('./anoLetivo')
  const series = require('./series')
  const turmas = require('./turmas')
+ const professores = require('./professores')
 
 
 module.exports = app=>{
@@ -16,6 +17,7 @@ module.exports = app=>{
         app.use(anoLetivo)
         app.use(series)
         app.use(turmas)
+        app.use(professores)
 
      
         
