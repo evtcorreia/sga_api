@@ -217,7 +217,7 @@ class ProfessorController {
 
         const pessoaId = await database.Pessoas.findOne({
             include: [{
-                model: database.Alunos,
+                model: database.Professores,
                 where: {
                     id: id
                 }
