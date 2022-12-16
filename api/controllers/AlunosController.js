@@ -13,6 +13,7 @@ class AlunoController {
         try {
 
             const lista = await database.Alunos.findAll({
+                where:{status_aluno:1},
 
                 include: [{
                     model: database.Pessoas,

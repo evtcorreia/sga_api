@@ -10,7 +10,7 @@ router
 
 .get('/v1/professores',  verifyJwt,ProfessorController.Lista)
 .post('/v1/professor/matricular',  verifyJwt,ProfessorController.Matricular)
-.get('/v1/professor/:id', verifyJwt,  ProfessorController.Buscar)
+.get('/v1/professor/:id', /* verifyJwt, */  ProfessorController.Buscar)
 .post('/v1/professor/alocar/:id',verifyJwt,ProfessorController.AlocarProfessor)
 
 
