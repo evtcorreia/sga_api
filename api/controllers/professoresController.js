@@ -49,7 +49,7 @@ class ProfessorController {
             bairro: dados.bairro,
             numero: dados.numero,
             complmento: dados.complmento,
-            municipio_id: dados.municipio,
+            municipio_id: 1,
             createdAt: Date(),
             updatedAt: Date()
         }
@@ -191,12 +191,12 @@ class ProfessorController {
             escolas_id: 1,
             pessoas_id: 1
         }
-        const aluno = {
+      /*   const aluno = {
             dt_matricula: Date(),
             status_aluno: 1
-        }
+        } */
 
-        const existeAluno = await database.Alunos.findOne({
+        const existeAluno = await database.Professores.findOne({
             where: {
                 id: id
             }
@@ -227,7 +227,7 @@ class ProfessorController {
 
 
         if (existeAluno == null) {
-            return res.status(400).json({ "msg": "O Aluno nao foi encontrado" })
+            return res.status(400).json({ "msg": "O Professor nao foi encontrado" })
         }
 
         try {
@@ -248,11 +248,11 @@ class ProfessorController {
                 }
             });
 
-            const alunoRes = await database.Alunos.update(aluno, {
+           /*  const alunoRes = await database.Alunos.update(aluno, {
                 where: {
                     id: id
                 }
-            })
+            }) */
 
             return res.status(200).json(enderecoId)
 

@@ -49,7 +49,7 @@ class AlunoController {
             bairro: dados.bairro,
             numero: dados.numero,
             complmento: dados.complmento,
-            municipio_id: dados.municipio,
+            municipio_id: 1,
             createdAt: Date(),
             updatedAt: Date()
         }
