@@ -1,8 +1,7 @@
 const database = require('./../models')
 const decodeJwt = require('../services/decodeJwt');
-
-
 class AlunoController {
+    
 
 
     static async Lista(req, res) {
@@ -341,6 +340,8 @@ class AlunoController {
         try {
 
             const lista = await database.Alunos.findAll({
+
+                where:{status_aluno:1},
 
                 include:[{
                     model:database.Pessoas,
