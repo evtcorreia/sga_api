@@ -6,7 +6,7 @@ class AlunoController {
 
     static async Lista(req, res) {
 
-        const info = await decodeJwt(req)
+        const info =  decodeJwt(req)
 
 
         try {
